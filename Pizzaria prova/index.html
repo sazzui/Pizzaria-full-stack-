@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria Mensatos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --verde-italia: #008C45;
+            --branco-italia: #F4F5F0;
+            --vermelho-italia: #CD212A;
+            --sombra: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1680&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--sombra);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--vermelho-italia);
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--verde-italia), var(--branco-italia), var(--vermelho-italia));
+            border-radius: 3px;
+        }
+
+        .panel {
+            margin-top: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--verde-italia);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--vermelho-italia);
+        }
+
+        label {
+            display: block;
+            margin: 20px 0 8px;
+            font-weight: bold;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--verde-italia);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 140, 69, 0.2);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--verde-italia), var(--vermelho-italia));
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--vermelho-italia), var(--verde-italia));
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 15px;
+        }
+
+        .flavor-option {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .flavor-option i {
+            margin-right: 10px;
+            color: var(--vermelho-italia);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Animação de loading */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        /* Notificação */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--verde-italia);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: var(--sombra);
+            z-index: 1000;
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.error {
+            background: var(--vermelho-italia);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pizzaria Mensatos</h1>
+        <div class="panel">
+            <h2>Monte o seu pedido</h2>
+            <form id="orderForm">
+                <label for="customerName">Nome do Cliente:</label>
+                <input type="text" id="customerName" name="nome" required placeholder="Seu nome completo">
+
+                <label for="phone">Telefone:</label>
+                <input type="tel" id="phone" name="telefone" required placeholder="(00) 00000-0000">
+
+                <label for="pizzaFlavor">Sabor da Pizza:</label>
+                <select id="pizzaFlavor" name="sabor" required>
+                    <option value="">Selecione um sabor</option>
+                    <option value="Mussarela">
+                        <div class="flavor-option">
+                            <i class="fas fa-cheese"></i> Mussarela
+                        </div>
+                    </option>
+                    <option value="Calabresa">
+                        <div class="flavor-option">
+                            <i class="fas fa-pepper-hot"></i> Calabresa
+                        </div>
+                    </option>
+                    <option value="Portuguesa">
+                        <div class="flavor-option">
+                            <i class="fas fa-egg"></i> Portuguesa
+                        </div>
+                    </option>
+                    <option value="Frango com Catupiry">
+                        <div class="flavor-option">
+                            <i class="fas fa-drumstick-bite"></i> Frango com Catupiry
+                        </div>
+                    </option>
+                    <option value="Quatro Queijos">
+                        <div class="flavor-option">
+                            <i class="fas fa-cheese"></i> Quatro Queijos
+                        </div>
+                    </option>
+                </select>
+
+                <label for="size">Tamanho:</label>
+                <select id="size" name="tamanho" required>
+                    <option value="">Selecione um tamanho</option>
+                    <option value="Pequena">Pequena (4 fatias)</option>
+                    <option value="Média">Média (6 fatias)</option>
+                    <option value="Grande">Grande (8 fatias)</option>
+                </select>
+
+                <label for="drink">Bebida:</label>
+                <select id="drink" name="bebida" required>
+                    <option value="">Selecione uma bebida</option>
+                    <option value="Refrigerante">Refrigerante</option>
+                    <option value="Suco">Suco Natural</option>
+                    <option value="Água">Água Mineral</option>
+                    <option value="Cerveja">Cerveja Artesanal</option>
+                </select>
+
+                <label for="observations">Observações:</label>
+                <textarea id="observations" name="observacoes" placeholder="Alguma observação especial sobre seu pedido..."></textarea>
+
+                <button type="submit">
+                    <i class="fas fa-paper-plane"></i> Finalizar Pedido
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationText">Pedido enviado com sucesso!</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('#orderForm');
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+
+            // Máscara para telefone
+            const phoneInput = document.getElementById('phone');
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.substring(0, 11);
+                
+                if (value.length > 0) {
+                    value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+                    if (value.length > 10) {
+                        value = value.replace(/(\d{5})(\d)/, '$1-$2');
+                    } else {
+                        value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                    }
+                }
+                e.target.value = value;
+            });
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Validar telefone
+                const telefone = phoneInput.value.replace(/\D/g, '');
+                if (telefone.length < 11) {
+                    showNotification('O número de telefone deve ter 11 dígitos (com DDD).', true);
+                    return;
+                }
+
+                // Verificar campos obrigatórios
+                const camposObrigatorios = form.querySelectorAll('[required]');
+                let todosPreenchidos = true;
+                
+                camposObrigatorios.forEach(campo => {
+                    if (campo.value.trim() === '') {
+                        campo.style.borderColor = 'var(--vermelho-italia)';
+                        todosPreenchidos = false;
+                    } else {
+                        campo.style.borderColor = '#ddd';
+                    }
+                });
+
+                if (!todosPreenchidos) {
+                    showNotification('Por favor, preencha todos os campos obrigatórios.', true);
+                    return;
+                }
+
+                // Exibir resumo do pedido
+                let resumo = "Resumo do pedido:\n\n";
+                camposObrigatorios.forEach(campo => {
+                    resumo += `${campo.previousElementSibling.innerText}: ${campo.value}\n`;
+                });
+
+                const obs = document.querySelector('#observations').value;
+                if (obs) resumo += `Observações: ${obs}\n`;
+
+                if (confirm(resumo + "\nDeseja enviar este pedido?")) {
+                    // Simular envio (substituir por AJAX real)
+                    showNotification('Pedido enviado com sucesso! Em breve entraremos em contato.');
+                    
+                    // Limpar formulário após 2 segundos
+                    setTimeout(() => {
+                        form.reset();
+                    }, 2000);
+                }
+            });
+
+            function showNotification(message, isError = false) {
+                notificationText.textContent = message;
+                notification.className = 'notification';
+                notification.classList.add(isError ? 'error' : 'show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
